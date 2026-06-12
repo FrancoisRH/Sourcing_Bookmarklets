@@ -1,0 +1,12 @@
+Universal scraper for name + URL (format: Name;URL)
+javascript:(function(){var results=[];var links=document.querySelectorAll('a[href]');links.forEach(function(a){var url=a.href;var name=a.innerText.trim();if(name.length>2&&name.length<60&&url.startsWith('http')&&!/^(http|www|click|here|more|view|see|next|back|home|login|sign)/i.test(name)){results.push(name+';'+url);}});var unique=[...new Set(results)];if(unique.length===0){alert('No name+URL pairs found.');return;}prompt('Found '+unique.length+' result(s) — Select All (Ctrl+A) then Copy:',unique.join('\n'));})();
+
+Github scraper for name + URL (format: Name;URL)
+javascript:(function(){var results=[];document.querySelectorAll('a.mr-1').forEach(function(a){var name=a.innerText.trim();var url=a.href;if(name&&url.startsWith('https://github.com/')){results.push(name+';'+url);}});if(results.length===0){alert('No results found. Make sure you are on a GitHub user search page.');}else{prompt('Found '+results.length+' result(s):',results.join('\n'));}})();
+
+Generic directory scraper for name + URL (format: Name;URL)
+javascript:(function(){var results=[];document.querySelectorAll('h2 a, h3 a, h4 a, .name a, .title a, [class*="name"] a, [class*="profile"] a').forEach(function(a){var name=a.innerText.trim();var url=a.href;if(name.length>2&&name.length<60&&url.startsWith('http')){results.push(name+';'+url);}});var unique=[...new Set(results)];if(unique.length===0){alert('No results found — the page structure may not match this bookmarklet.');}else{prompt('Found '+unique.length+' result(s):',unique.join('\n'));}})();
+
+// FYI The output should look like
+// Marie Dupont;https://linkedin.com/in/marie-dupont
+// Thomas Reyes;https://github.com/thomasreyes
