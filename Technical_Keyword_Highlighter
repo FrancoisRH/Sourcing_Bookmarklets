@@ -1,0 +1,37 @@
+javascript:(function(){
+var keywords=["JavaScript","TypeScript","Python","Java","Kotlin","Swift","Objective-C","C","C++","C#","Go","Golang","Rust","Ruby","PHP","Scala","Perl","Haskell","Elixir","Erlang","Clojure","F#","R","MATLAB","Julia","Dart","Lua","Groovy","COBOL","Fortran","Assembly","VHDL","Verilog","Bash","Shell","PowerShell","React","Angular","Vue","Vue.js","Next.js","Nuxt","Svelte","Ember","Backbone","jQuery","Bootstrap","Tailwind","Tailwind CSS","SASS","LESS","WebGL","Three.js","Node.js","Express","NestJS","Django","Flask","FastAPI","Spring","Spring Boot","Laravel","Rails","Ruby on Rails","ASP.NET",".NET","Blazor","Symfony","CodeIgniter","GraphQL","REST","gRPC","WebSocket","Redux","MobX","Zustand","React Query","TensorFlow","PyTorch","Keras","Scikit-learn","Pandas","NumPy","SciPy","Matplotlib","Seaborn","Hugging Face","LangChain","OpenCV","NLTK","spaCy","XGBoost","LightGBM","Spark","Hadoop","Kafka","Airflow","dbt","Databricks","Snowflake","BigQuery","Redshift","PostgreSQL","MySQL","SQLite","MariaDB","Oracle","SQL Server","MongoDB","Redis","Cassandra","DynamoDB","Elasticsearch","Neo4j","CouchDB","Firebase","Supabase","PlanetScale","Docker","Kubernetes","Helm","Terraform","Ansible","Puppet","Chef","Jenkins","GitHub Actions","GitLab CI","CircleCI","Travis CI","ArgoCD","Flux","Prometheus","Grafana","Datadog","New Relic","Splunk","ELK","Logstash","Kibana","AWS","Azure","GCP","Google Cloud","Heroku","Vercel","Netlify","Cloudflare","DigitalOcean","Lambda","EC2","S3","RDS","CloudFormation","CDK","Pulumi","Git","GitHub","GitLab","Bitbucket","Perforce","SVN","Jira","Confluence","Notion","Linear","Figma","Zeplin","Storybook","Webpack","Vite","Rollup","Babel","ESLint","Prettier","Jest","Mocha","Cypress","Playwright","Selenium","Pytest","JUnit","TestNG","Postman","Swagger","OpenAPI","Unity","Unreal","Unreal Engine","Godot","Anvil","Snowdrop","Dunia","Frostbite","OpenGL","Vulkan","DirectX","Metal","HLSL","GLSL","WGSL","Wwise","FMOD","iOS","Android","React Native","Flutter","Xamarin","Ionic","Electron","Tauri","Linux","Ubuntu","Debian","CentOS","Alpine","Windows Server","macOS","Agile","Scrum","Kanban","SAFe","Lean","DevOps","MLOps","DataOps","GitOps","CI/CD","TDD","BDD","DDD","Event-driven","Microservices","Monolith","Serverless","Edge computing","API","SDK","CLI","OOP","Functional programming","Reactive programming","SOLID","Design patterns","Clean architecture","Hexagonal architecture","Machine learning","Deep learning","NLP","Computer vision","Reinforcement learning","LLM","RAG","Fine-tuning","Embeddings","Diffusion models","Generative AI","Blockchain","Web3","Smart contracts","Solidity","IPFS","AR","VR","XR","Mixed reality","IoT","Embedded systems","RTOS","Raspberry Pi","Arduino"];
+
+var flags="gi";
+var style="background-color:#FFE066;color:#000;border-radius:3px;padding:0 2px;font-weight:bold;";
+
+function escapeRegex(s){return s.replace(/[-\/\\^$*+?.()|[\]{}]/g,'\\$&');}
+
+function walkAndHighlight(node){
+  if(node.nodeType===3){
+    var text=node.nodeValue;
+    var matched=false;
+    var temp=document.createElement('span');
+    var result=text;
+    keywords.forEach(function(kw){
+      var re=new RegExp('\\b'+escapeRegex(kw)+'\\b',flags);
+      if(re.test(result)){matched=true;}
+      result=result.replace(re,'<mark style="'+style+'">$&</mark>');
+    });
+    if(matched){
+      temp.innerHTML=result;
+      node.parentNode.replaceChild(temp,node);
+    }
+  } else if(node.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA|INPUT|SELECT|MARK)$/.test(node.tagName)){
+    Array.from(node.childNodes).forEach(walkAndHighlight);
+  }
+}
+
+walkAndHighlight(document.body);
+alert('✅ Technical keywords highlighted!');
+})();
+
+// Chrome has a limit on how much text you can paste into the bookmark URL field — very long bookmarklets sometimes get silently truncated, which would break the script.
+// If it doesn't work after saving, here's a reliable workaround:
+// 1. Open the browser console on any page with F12 → Console tab
+// 2. Paste the code there and hit Enter — it will run instantly without the length limitation
+// 3. This is also a good way to test it before saving as a bookmarklet
