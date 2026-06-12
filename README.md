@@ -1,5 +1,5 @@
 # Sourcing_Bookmarklets
-This repository lests Google Chrome bookmarlets I use for sourcing purposes
+This repository lists Google Chrome bookmarlets I use for sourcing purposes
 
 How to install and use bookmarlets in Google Chrome? 
 1. Show the bookmarks bar in Google Chrome if it's hidden (press Ctrl + Shift + B)
