@@ -1,0 +1,1 @@
+javascript:(function(){var links=document.querySelectorAll('a[href]');var urls=Array.from(links).map(function(a){return a.href;}).filter(function(u){return u.startsWith('http');});var unique=[...new Set(urls)];var output=unique.join('\n');prompt('Found '+unique.length+' URLs %E2%80%94 Select All (Ctrl+A) then Copy:',output);})();
